@@ -5,10 +5,24 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+    public Usuario(Integer id_usuario, String nombres, String apellidos, String correo, Rol rol, String username, String password) {
+        this.id_usuario = id_usuario;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.rol = rol;
+        this.username = username;
+        this.password = password;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUsuario")
     private Integer id_usuario;
+
+    private String nombres;
+    private String apellidos;
+    private String correo;
 
     @ManyToOne
     @JoinColumn(name = "id_rol",
@@ -22,14 +36,6 @@ public class Usuario {
     @Column(nullable = false)
     private String password;
 
-
-    public Usuario(Integer id_usuario, Rol rol, String username, String password) {
-        this.id_usuario = id_usuario;
-        this.rol = rol;
-        this.username = username;
-        this.password = password;
-    }
-
     public Usuario() {
     }
 
@@ -39,6 +45,30 @@ public class Usuario {
 
     public void setId_usuario(Integer id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public Rol getRol() {
